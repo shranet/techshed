@@ -1,0 +1,99 @@
+:root {
+    --bg1: rgb(117, 31, 255)
+}
+
+html, body {
+    font-size: 16px;
+}
+
+.bg-gray {
+    background: rgb(237, 236, 236);
+}
+
+.header a i {
+    font-size: 1.5rem;
+}
+
+.header .logo {
+    font-size: 40px;
+}
+
+.header .input-group {
+    border-radius: 19px;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.header .input-group input {
+    border-bottom-left-radius: 19px;
+    border-top-left-radius: 19px;
+}
+
+.header .input-group button {
+    background: var(--bg1);
+    border-bottom-right-radius: 19px;
+    border-top-right-radius: 19px;
+}
+
+.header .input-group:hover {
+
+    border: 1px solid black;
+}
+
+.header .input-group button:hover {
+    background: black;
+}
+
+.slider > div {
+    padding: 5rem 0;
+}
+
+.slider .h1 {
+    font-size: 60px;
+    line-height: 1.2;
+}
+
+.slider .h2 {
+    font-size: 20px;
+}
+
+.slider .btn {
+    background: var(--bg1);
+}
+
+.slider .img {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: url('../img/header-1.webp') 50% 50% no-repeat;
+    background-size: cover;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity linear 1.5s;
+}
+
+.slider .img2 {
+    background-image: url("../img/header-2.webp");
+}
+
+.slider .img3 {
+    background-image: url("../img/header-3.webp");
+}
+
+.slider .img.show {
+    opacity: 1;
+}
+
+.top-category {
+    padding: 6rem;
+    height: 100%;
+    min-height: 468px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.top-category .text {
+    font-size: 50px;
+    line-height: 1.2;
+}

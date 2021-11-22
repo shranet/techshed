@@ -1,5 +1,55 @@
 {% extends 'layouts/base.html' %}
+{% load i18n static %}
 
 {% block content %}
-    Main index
+
+    <section class="slider position-relative">
+        <div class="position-absolute img1 img show"></div>
+        <div class="position-absolute img2 img"></div>
+        <div class="position-absolute img3 img"></div>
+
+        <div class="container position-relative">
+            <div class="bg-danger px-3 d-inline-block text-white">{% translate "Best Prices" %}</div>
+            <div class="h1 mt-3">{% translate "Incredible Prices<br/>on All Your<br/>Favorite Items" %}</div>
+            <div class="mb-3 h2 fw-light">{% translate "Get more for less on selected brands" %}</div>
+            <a href="#" class="btn rounded-pill text-white px-5 py-2 fw-light">{% translate "Shop Now" %}</a>
+        </div>
+    </section>
+
+    {% if top_categories %}
+    <section>
+    <div class="container-fluid py-3">
+        <div class="row">
+            {% for c in top_categories %}
+            <div class="col-lg-6">
+            <div style="background-image: url('{{ c.image.url }}')" class="text-white top-category">
+                <div class="prefix fw-light">{{ c.text_prefix }}</div>
+                <div class="text my-3">{{ c.text|linebreaksbr }}</div>
+                <div class="suffix fw-light">{{ c.text_suffix }}</div>
+                <a href="#" class="btn rounded-pill bg-white py-2 px-5 mt-3 fw-light">{% translate "Shop" %}</a>
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </section>
+    {% endif %}
+
+    <section>
+    asdasdasd
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script>
+        (function(){
+            let images = document.querySelectorAll('.slider > .img')
+            let currentIndex = 0;
+            setInterval(() => {
+                images.forEach(item => item.classList.remove('show'))
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('show')
+            }, 5000)
+        })();
+    </script>
 {% endblock %}
