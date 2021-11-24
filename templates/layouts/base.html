@@ -40,17 +40,29 @@
     </form>
     <a href="#" class="text-nowrap ms-auto text-black text-decoration-none me-4"><i class="bi bi-person-circle me-2"></i> {% translate "Login" %}</a>
     <a href="#" class="text-nowrap text-black text-decoration-none me-4"><i class="bi bi-heart me-2"></i> {% translate "Favorites" %}</a>
-    <a href="#" class="text-nowrap text-black text-decoration-none"><i class="bi bi-cart me-1"></i> <span class="rounded-circle px-1 bg-black text-white">0</span></a>
+    <a href="{% url 'cart:products' %}" class="text-nowrap text-black text-decoration-none"><i class="bi bi-cart me-1"></i> <span class="rounded-circle px-1 bg-black text-white">{{ cart_n }}</span></a>
 </div>
 <div class="bg-gray">
     <div class="d-flex py-2 px-4">
-        <a href="#" class="text-decoration-none text-black fw-light me-4">{% translate "Shop All" %}</a>
-        {% for category in categories %}
-            <a href="#" class="text-decoration-none text-black fw-light me-4">{{ category.name }}</a>
+        <a href="{% url 'main:shop-all' %}" class="text-decoration-none text-black fw-light me-4">{% translate "Shop All" %}</a>
+        {% for parent in categories %}
+            {% if parent.children %}
+            <div class="dropdown">
+                <a href="#" class="text-decoration-none text-black fw-light me-4" data-bs-toggle="dropdown">{{ parent.category.name }}</a>
+                <div class="dropdown-menu">
+                    {% for child in parent.children %}
+                    <a href="{% url 'main:category' child.id %}" class="dropdown-item">{{ child.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <a href="{% url 'main:category' parent.category.id %}" class="text-decoration-none text-black fw-light me-4">{{ parent.category.name }}</a>
+            {% endif %}
         {% endfor %}
-        <a href="#" class="text-decoration-none text-black fw-light me-4">{% translate "Sale" %}</a>
+        <a href="{% url 'main:sale' %}" class="text-decoration-none text-black fw-light me-4">{% translate "Sale" %}</a>
     </div>
 </div>
+
 {% block content %}{% endblock %}
 
 <!-- JavaScript Bundle with Popper -->

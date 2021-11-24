@@ -35,8 +35,25 @@
     </section>
     {% endif %}
 
-    <section>
-    asdasdasd
+    <section class="container-fluid">
+    <div class="row">
+        {% for p in top_sold %}
+            <div class="col-lg-2 position-relative">
+            {% if p.has_discount %}<span class="badge bg-danger text-white sale">SALE</span>{% endif %}
+            <a href="{% url 'main:product' p.id %}">
+                <img src="{{ p.image.url }}" alt="{{ p.name }}" class="img-fluid" /><br/>
+                {{ p.name }}
+            </a>
+            {% if p.has_discount %}
+                <br/>
+            <span class="text-primary">${{ p.discount_price }}</span>
+            <span class="text-primary text-decoration-line-through">${{ p.price }}</span>
+            {% else %}
+            <div class="text-primary">${{ p.price }}</div>
+            {% endif %}
+            </div>
+        {% endfor %}
+    </div>
     </section>
 {% endblock %}
 

@@ -44,6 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
+    "crispy_forms",
+    "crispy_bootstrap5",
+    'cart',
     'account',
     'main'
 ]
@@ -75,7 +79,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'techshed.context_processors.settings',
-                'techshed.context_processors.load_categories'
+                'techshed.context_processors.load_categories',
+                'techshed.context_processors.load_cart'
             ],
         },
     },
@@ -150,3 +155,8 @@ AUTH_USER_MODEL = 'account.User'
 # Own
 
 SITE_PHONE_NUMBER = env('SITE_PHONE_NUMBER')
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"

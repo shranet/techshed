@@ -25,6 +25,7 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path('', include('main.urls')),
-    path('account/', include('account.urls'))
+    path('account/', include('account.urls')),
+    path('cart/', include('cart.urls'))
 )
 
