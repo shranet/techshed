@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Summa</th>
+                <th>Sana</th>
+                <th>Status</th>
+                <th>Harakat</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in object_list %}
+                <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.order_total_price }}</td>
+                <td>{{ order.order_at }}</td>
+                <td>{{ order.get_status_display }}</td>
+                <td>{% if order.status == 0 %}
+                    <a href="{% url 'cart:pay' order.id %}" class="btn btn-sm btn-success">Pay</a>
+                {% endif %}</td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+
+{% endblock %}

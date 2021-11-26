@@ -22,6 +22,7 @@ class Order(models.Model):
     address = models.TextField()
     phone = models.CharField(max_length=16, validators=[PhoneValidator()])
     zip_code = models.CharField(max_length=20)
+    order_total_price = models.DecimalField(decimal_places=2, max_digits=12, default=0)
     status = models.SmallIntegerField(choices=(
         (STATUS_NEW, "New"),
         (STATUS_ACCEPTED, "Accepted"),
@@ -39,7 +40,7 @@ class Order(models.Model):
     order_at = models.DateTimeField(auto_now_add=True)
 
 
-class OrderProductModel(models.Model):
+class OrderProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.RESTRICT)
     product = models.ForeignKey(Product, on_delete=models.RESTRICT)
     amount = models.IntegerField()
