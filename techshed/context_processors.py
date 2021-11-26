@@ -10,7 +10,9 @@ def settings(request):
 
 
 def load_categories(request):
-    parents = {}
+    parents = {
+        None: []
+    }
 
     for cat in Category.objects.order_by('id').all():
         if cat.parent_id not in parents:
