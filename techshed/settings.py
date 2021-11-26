@@ -30,12 +30,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY', default="123")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS', default=[])
+ALLOWED_HOSTS = env('ALLOWED_HOSTS', default=["*"])
 
 
 # Application definition
@@ -96,7 +96,7 @@ WSGI_APPLICATION = 'techshed.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db()
+    'default': env.db(default="sqlite:///app/techshed.db")
 }
 
 
@@ -157,7 +157,7 @@ AUTH_USER_MODEL = 'account.User'
 
 # Own
 
-SITE_PHONE_NUMBER = env('SITE_PHONE_NUMBER')
+SITE_PHONE_NUMBER = env('SITE_PHONE_NUMBER', default="998971234567")
 
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
